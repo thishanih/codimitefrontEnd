@@ -18,7 +18,7 @@ export default function Todo() {
       firstName: Yup.string().min(2).max(100).required("Required"),
       lastName: Yup.string().min(2).max(100).required("Required"),
       email: Yup.string().email().required("Required"),
-      password: Yup.string().required("Required"),
+      password: Yup.string().min(8).max(30).required("Required"),
     }),
 
     async onSubmit(values) {
@@ -33,49 +33,70 @@ export default function Todo() {
     },
   });
   return (
-    <>
+    <div div className="container">
       <h1>ADD User Member</h1>
 
       <form className="form" onSubmit={formik.handleSubmit}>
-        <input
-          name="firstName"
-          type="text"
-          value={formik.values.firstName}
-          onChange={formik.handleChange}
-        />
-        <div className="text-red-500 text-xs pt-1">
-          {formik.errors.firstName}
+        <div className="form-group">
+          <label>First name</label>
+          <input
+            type="text"
+            className="form-control"
+            name="firstName"
+            placeholder="Enter email"
+            value={formik.values.firstName}
+            onChange={formik.handleChange}
+          />
+
+          <div className="text-danger">{formik.errors.firstName}</div>
         </div>
 
-        <input
-          name="lastName"
-          type="text"
-          value={formik.values.lastName}
-          onChange={formik.handleChange}
-        />
-        <div className="text-red-500 text-xs pt-1">
-          {formik.errors.lastName}
+        <div className="form-group">
+          <label>Last name</label>
+          <input
+            type="text"
+            className="form-control"
+            name="lastName"
+            placeholder="Enter email"
+            value={formik.values.lastName}
+            onChange={formik.handleChange}
+          />
+
+          <div className="text-danger">{formik.errors.lastName}</div>
         </div>
 
-        <input
-          name="email"
-          type="text"
-          value={formik.values.email}
-          onChange={formik.handleChange}
-        />
-        <div className="text-red-500 text-xs pt-1">{formik.errors.email}</div>
+        <div className="form-group">
+          <label> Email</label>
+          <input
+            type="text"
+            className="form-control"
+            name="email"
+            placeholder="Enter email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+          />
 
-        <input
-          name="password"
-          type="password"
-          value={formik.values.password}
-          onChange={formik.handleChange}
-        />
-        <div className="text-red-500 text-xs pt-1">
-          {formik.errors.password}
+          <div className="text-danger">{formik.errors.email}</div>
         </div>
-        <button type="submit">Submit</button>
+
+        <div className="form-group">
+          <label> password</label>
+          <input
+            type="password"
+            className="form-control"
+            name="password"
+            placeholder="Enter password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+          />
+
+          <div className="text-danger">{formik.errors.password}</div>
+        </div>
+
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
       </form>
-    </>
+    </div>
   );
 }
